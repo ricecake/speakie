@@ -20,7 +20,7 @@ start(_StartType, _StartArgs) ->
 					{"/static/[...]", cowboy_static, {priv_dir, speakie, "static/"}}
 				]}
 			]),
-			{ok, _} = cowboy:start_http(http, 25, [{ip, {127,0,0,1}}, {port, 8585}],
+			{ok, _} = cowboy:start_http(http, 25, [{ip, {127,0,0,1}}, {port, 8665}],
 							[{env, [{dispatch, Dispatch}]}]),
 			{ok, Pid}
 	end.
