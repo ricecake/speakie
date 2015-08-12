@@ -34,16 +34,19 @@ $(document).ready(function(){
 	});
 	var recognition = new webkitSpeechRecognition();
 	recognition.continuous = true;
-	recognition.interimResults = false;
+	recognition.interimResults = true;
 	recognition.onresult = function(event) {
 		console.log(event);
 		for (var i = event.resultIndex; i < event.results.length; ++i) {
 			if (event.results[i].isFinal) {
+				$('#output').text(event.results[i][0].transcript);
 				var message = {
 					spoken: event.results[i][0].transcript,
 					voice: "Google UK English Male"
 				};
 				connection.send('speach.heard', message);
+			} else {
+				$('#output').text(event.results[i][0].transcript);
 			}
 		}
 	};
