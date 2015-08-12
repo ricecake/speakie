@@ -13,7 +13,7 @@ $(document).ready(function(){
 				myId = content.id;
 			},
 			'speach.heard': function(key, content, raw) {
-				if (raw.from === me.id) {
+				if (raw.from === myId) {
 					return;
 				}
 				var msg = new SpeechSynthesisUtterance(content.spoken)
