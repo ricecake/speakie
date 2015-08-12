@@ -1,0 +1,83 @@
+{% extends "speakie_main.dtl" %}
+
+{% block mainContent %}
+<div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+                <br><br>
+                <h1 class="header center orange-text">speakie</h1>
+                <div class="row center">
+                        <h5 class="header col s12 light">Collaboration or some shit like that.</h5>
+                </div>
+                <div class="row center">
+                        <a id="download-button" class="btn-large waves-effect waves-light orange modal-trigger" href="#info-form">Get Started</a>
+                        <div id='info-form' class="modal">
+                                <div class='wait-indicator'>
+                                        <h4>
+                                                Joining Channel...
+                                        </h4>
+                                        <div class="progress">
+                                                <div class="indeterminate"></div>
+                                        </div>
+                                </div>
+                                <div class='wait-content'>
+                                        <div class="modal-content">
+                                                <h4>
+                                                        Information
+                                                </h4>
+                                                <form class="speakie-user-info">
+                                                        <div class="input-field col s6">
+                                                                <i class="material-icons prefix">account_circle</i>
+                                                                <input id="nick_name" type="text" class="validate" required="required">
+                                                                <label for="nick_name">NickName</label>
+                                                        </div>
+                                                        <div class="input-field col s6">
+                                                                <i class="material-icons prefix">group_work</i>
+                                                                <input id="channel_name" type="text" class="validate" required="required">
+                                                                <label for="channel_name">Channel</label>
+                                                        </div>
+                                                        <input type='submit' class='submit-shim'/>
+                                                </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                                <a class="modal-action modal-close waves-effect waves-red btn-flat">OH SHIT NO</a>
+                                                <a class="confirm modal-action waves-effect waves-green btn-flat">LET'S DO THIS</a>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+<div class="container">
+        <div class="section">
+<!--   Icon Section   -->
+                <div class="row">
+                        <div class="col s12 m4">
+                                <div class="icon-block">
+                                        <h2 class="center light-blue-text"><i class="mdi-image-flash-on"></i></h2>
+                                        <h5 class="center">Do shit faster</h5>
+                                        <p class="light">Lightning is fast.  Be like lightning.  Short lived and incandescent.</p>
+                                </div>
+                        </div>
+
+                        <div class="col s12 m4">
+                                <div class="icon-block">
+                                        <h2 class="center light-blue-text"><i class="mdi-social-group"></i></h2>
+                                        <h5 class="center">Work with people</h5>
+                                        <p class="light">People are pretty alright.  Cooperate with them, or at least pretend to.</p>
+                                </div>
+                        </div>
+
+                        <div class="col s12 m4">
+                                <div class="icon-block">
+                                        <h2 class="center light-blue-text"><i class="mdi-action-settings"></i></h2>
+                                        <h5 class="center">Use technology</h5>
+                                        <p class="light">When people aren't alright, at least the computers are still cold and mechanical.</p>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+{% endblock %}
