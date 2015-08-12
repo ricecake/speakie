@@ -12,11 +12,16 @@ $(document).ready(function(){
 			'session.data': function(key, content) {
 				myId = content.id;
 			},
+			"channel.connected": function() {
+				var msg = new SpeechSynthesisUtterance("A new user has connected");
+				msg.voice = window.speechSynthesis.getVoices()[0];
+				window.speechSynthesis.speak(msg);
+			},
 			'speach.heard': function(key, content, raw) {
 				if (raw.from === myId) {
 					return;
 				}
-				var msg = new SpeechSynthesisUtterance(content.spoken)
+				var msg = new SpeechSynthesisUtterance(content.spoken);
 				msg.voice = window.speechSynthesis.getVoices().filter(function(e){
 					return e.name === content.voice;
 				})[0];
