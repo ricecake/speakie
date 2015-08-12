@@ -42,8 +42,10 @@ $(document).ready(function(){
 			}
 		}
 	};
+	recognition.onend = function() {
+		recognition.start();
+	};
 	recognition.start();
-
 });
 
 }());
