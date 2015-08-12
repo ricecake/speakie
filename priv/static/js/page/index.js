@@ -3,6 +3,21 @@
 
 $(document).ready(function(){
 	var myId;
+	var voices = {};
+	$('select').material_select();
+	window.speechSynthesis.onvoiceschanged = function(){
+		window.speechSynthesis.getVoices().map(function(voice){
+			if (!voices[voice.lang]) {
+				$('#voice')
+					//.find('option')
+					//.remove()
+					//.end()
+					.append('<option value="'+ voice.lang +'">'+ voice.name +'</option>');
+				voices[voice.lang] = true;
+			}
+		});
+		$('select').material_select();
+	};
         var connection = new KnotConn({
 		url: '/ws/',
 		eventHandlers: {
@@ -14,7 +29,9 @@ $(document).ready(function(){
 			},
 			"channel.connected": function() {
 				var msg = new SpeechSynthesisUtterance("A new user has connected");
-				msg.voice = window.speechSynthesis.getVoices()[0];
+				msg.voice = window.speechSynthesis.getVoices().filter(function(e){
+					return e.lang === $('#voice').find(':selected').prop('value');
+				})[0];
 				window.speechSynthesis.speak(msg);
 			},
 			'speach.heard': function(key, content, raw) {
@@ -23,7 +40,7 @@ $(document).ready(function(){
 				}
 				var msg = new SpeechSynthesisUtterance(content.spoken);
 				msg.voice = window.speechSynthesis.getVoices().filter(function(e){
-					return e.name === content.voice;
+					return e.lang === content.voice;
 				})[0];
 				window.speechSynthesis.speak(msg);
 			}
@@ -42,7 +59,7 @@ $(document).ready(function(){
 				$('#output').text(event.results[i][0].transcript);
 				var message = {
 					spoken: event.results[i][0].transcript,
-					voice: "Google UK English Male"
+					voice: $('#voice').find(':selected').prop('value')
 				};
 				connection.send('speach.heard', message);
 			} else {
