@@ -2,13 +2,20 @@
 'use strict';
 
 $(document).ready(function(){
+	var myId;
         var connection = new KnotConn({
 		url: '/ws/',
 		eventHandlers: {
 			'#': function(key, content, raw) {
 				console.log([key, content, raw]);
 			},
+			'session.data': function(key, content) {
+				myId = content.id;
+			},
 			'speach.heard': function(key, content, raw) {
+				if (raw.from === me.id) {
+					return;
+				}
 				var msg = new SpeechSynthesisUtterance(content.spoken)
 				msg.voice = window.speechSynthesis.getVoices().filter(function(e){
 					return e.name === content.voice;
